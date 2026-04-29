@@ -9,7 +9,339 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Kayan Masterpiece Website Styles */
+        :root {
+          --black: #0D0D09;
+          --black2: #141410;
+          --gold: #EEE27D;
+          --gold2: #d4c45a;
+          --gold3: #f5eeaa;
+          --white: #FFFFFF;
+          --dim: rgba(255, 255, 255, 0.45);
+          --panel: #181812;
+          --border: rgba(238, 226, 125, 0.13);
+          --gold-gradient-fluid: linear-gradient(135deg, rgba(238,226,125,0.8) 0%, rgba(212,196,90,0.6) 50%, rgba(238,226,125,0.8) 100%);
+          --gold-shadow: 0 0 25px rgba(238,226,125,0.4);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+          background: var(--black);
+          color: var(--white);
+          font-family: 'Cairo', sans-serif;
+          overflow-x: hidden;
+          margin: 0;
+          padding: 0;
+        }
+
+        /* Background Grid */
+        body::before {
+          content: '';
+          position: fixed;
+          inset: 0;
+          background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><rect width='80' height='80' fill='%230D0D09'/><path d='M0 0L80 80M80 0L0 80' stroke='%23EEE27D' stroke-opacity='0.03' stroke-width='1'/></svg>");
+          background-size: 80px 80px;
+          pointer-events: none;
+          z-index: -1;
+          animation: backgroundPattern 60s linear infinite;
+        }
+
+        @keyframes backgroundPattern {
+          0% { background-position: 0% 0%; }
+          100% { background-position: 100% 100%; }
+        }
+
+        /* Typography Overrides */
+        h1, h2, h3, .footer-logo, .about-quote {
+          font-family: 'Cormorant Garamond', serif;
+        }
+        p, a, span, div {
+          font-family: 'Cairo', sans-serif;
+        }
+
+        /* Navigation */
+        nav {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 200;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 20px 60px;
+          background: linear-gradient(to bottom, rgba(13, 13, 9, 0.96), transparent);
+          backdrop-filter: blur(12px);
+        }
+        .nav-logo {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 20px;
+          font-weight: 700;
+          color: var(--gold);
+          letter-spacing: 2px;
+          text-decoration: none;
+        }
+        .nav-links {
+          display: flex;
+          gap: 32px;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+        .nav-links a {
+          color: rgba(255, 255, 255, 0.5);
+          text-decoration: none;
+          font-size: 14px;
+          font-weight: 600;
+          transition: all 0.3s ease;
+        }
+        .nav-links a:hover {
+          color: var(--gold);
+          text-shadow: 0 0 8px rgba(238,226,125,0.6);
+        }
+        .nav-cta {
+          border: 1px solid var(--gold);
+          color: var(--gold) !important;
+          padding: 8px 20px;
+          border-radius: 40px;
+        }
+
+        /* Hero Section */
+        .hero {
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          overflow: hidden;
+          padding: 120px 60px 100px;
+        }
+        .hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(ellipse 70% 70% at 65% 50%, rgba(238, 226, 125, .06) 0%, transparent 60%),
+                      linear-gradient(to bottom, rgba(13, 13, 9, .4) 0%, rgba(13, 13, 9, .1) 50%, rgba(13, 13, 9, .7) 100%);
+          animation: heroOverlayPulse 8s ease-in-out infinite alternate;
+          z-index: 1;
+        }
+        @keyframes heroOverlayPulse {
+          0% { opacity: 1; transform: scale(1); }
+          100% { opacity: 0.9; transform: scale(1.02); }
+        }
+        .hero-content {
+          position: relative;
+          z-index: 2;
+          max-width: 720px;
+          text-align: center;
+        }
+        .eyebrow {
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 2px;
+          color: var(--gold);
+          margin-bottom: 24px;
+          display: inline-flex;
+          align-items: center;
+          gap: 14px;
+        }
+        .hero h1 {
+          font-size: clamp(54px, 8vw, 96px);
+          font-weight: 300;
+          line-height: .92;
+          color: var(--white);
+          margin: 0 0 8px 0;
+        }
+        .hero h1 em {
+          font-style: italic;
+          color: var(--gold);
+          display: block;
+        }
+        .hero-ar {
+          font-size: clamp(20px, 3.5vw, 32px);
+          font-weight: 700;
+          color: rgba(255, 255, 255, .8);
+          margin-bottom: 28px;
+        }
+        .hero-desc {
+          font-size: 16px;
+          color: var(--dim);
+          line-height: 2;
+          max-width: 500px;
+          margin: 0 auto 44px;
+        }
+        .hero-btns {
+          display: flex;
+          gap: 14px;
+          justify-content: center;
+        }
+        .btn-gold, .btn-outline {
+          padding: 15px 38px;
+          border-radius: 4px;
+          font-size: 14px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          text-decoration: none;
+          display: inline-block;
+        }
+        .btn-gold {
+          background: var(--gold);
+          color: var(--black);
+          border: none;
+        }
+        .btn-gold:hover {
+          background: var(--gold3);
+          transform: translateY(-3px) scale(1.02);
+          box-shadow: var(--gold-shadow);
+        }
+        .btn-outline {
+          background: transparent;
+          color: var(--white);
+          border: 1px solid rgba(255, 255, 255, .2);
+        }
+        .btn-outline:hover {
+          border-color: var(--gold);
+          color: var(--gold);
+          transform: translateY(-3px) scale(1.02);
+          box-shadow: var(--gold-shadow);
+        }
+
+        /* Sections */
+        section { position: relative; z-index: 1; }
+        .container {
+          max-width: 1180px;
+          margin: 0 auto;
+          padding: 0 60px;
+        }
+        #about { padding: 120px 0; }
+        .about-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 90px;
+          align-items: center;
+        }
+        .sec-eyebrow {
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 2px;
+          color: var(--gold);
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          margin-bottom: 14px;
+        }
+        .sec-h2 {
+          font-size: clamp(34px, 5vw, 58px);
+          font-weight: 400;
+          color: var(--white);
+          margin-bottom: 14px;
+        }
+        .sec-h2 em { color: var(--gold); font-style: italic; }
+        .about-quote {
+          font-size: clamp(20px, 2.5vw, 28px);
+          font-style: italic;
+          color: rgba(255, 255, 255, .72);
+          line-height: 1.6;
+          margin-bottom: 30px;
+          padding-right: 22px;
+          border-right: 2px solid var(--gold);
+        }
+        .sec-sub {
+          font-size: 15px;
+          color: var(--dim);
+          line-height: 1.85;
+        }
+        .about-visual {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+        .about-card {
+          background: var(--panel);
+          border: 1px solid var(--border);
+          border-radius: 12px;
+          padding: 28px;
+          text-align: center;
+          transition: all 0.4s ease-out;
+        }
+        .about-card:hover {
+          border-color: var(--gold);
+          transform: translateY(-8px);
+          box-shadow: var(--gold-shadow);
+        }
+        .about-card-title {
+          font-size: 24px;
+          color: var(--white);
+          margin: 0 0 10px 0;
+        }
+        .about-card-ar {
+          font-size: 14px;
+          color: var(--gold);
+          margin: 0;
+        }
+
+        /* Footer */
+        footer {
+          padding: 60px 0;
+          text-align: center;
+          background: var(--black2);
+          border-top: 1px solid var(--border);
+        }
+        .footer-logo {
+          font-size: 24px;
+          font-weight: 700;
+          color: var(--gold);
+          letter-spacing: 2px;
+          margin-bottom: 15px;
+          display: block;
+        }
+        .footer-links {
+          display: flex;
+          justify-content: center;
+          gap: 30px;
+          list-style: none;
+          padding: 0;
+          margin-bottom: 20px;
+        }
+        .footer-links a {
+          color: rgba(255, 255, 255, .5);
+          text-decoration: none;
+          font-size: 14px;
+          transition: all .3s ease;
+        }
+        .footer-links a:hover {
+          color: var(--gold);
+        }
+        .footer-copy {
+          font-size: 13px;
+          color: var(--dim);
+        }
+
+        /* RTL Adjustments */
+        html[dir="rtl"] .nav-links, html[dir="rtl"] .hero-btns, html[dir="rtl"] .footer-links {
+          flex-direction: row-reverse;
+        }
+
+        /* Animations */
+        .reveal {
+          opacity: 0;
+          transform: translateY(36px);
+          transition: opacity .8s ease, transform .8s ease;
+        }
+        .reveal.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+          .about-grid { grid-template-columns: 1fr; gap: 50px; }
+          .container { padding: 0 30px; }
+          nav { padding: 15px 30px; }
+          .nav-links { display: none; }
+        }
+    </style>
 </head>
 <body>
 
