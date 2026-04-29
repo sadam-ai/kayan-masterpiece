@@ -1,419 +1,593 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>كيان ماستربيس | Kayan Masterpiece</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Kayan Masterpiece Website Styles */
-        :root {
-          --black: #0D0D09;
-          --black2: #141410;
-          --gold: #EEE27D;
-          --gold2: #d4c45a;
-          --gold3: #f5eeaa;
-          --white: #FFFFFF;
-          --dim: rgba(255, 255, 255, 0.45);
-          --panel: #181812;
-          --border: rgba(238, 226, 125, 0.13);
-          --gold-gradient-fluid: linear-gradient(135deg, rgba(238,226,125,0.8) 0%, rgba(212,196,90,0.6) 50%, rgba(238,226,125,0.8) 100%);
-          --gold-shadow: 0 0 25px rgba(238,226,125,0.4);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kayan Masterpiece — إبداع صنع ليدوم</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cairo:wght@300;400;600;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  /* ألوان الهوية البصرية الدقيقة لـ تحفة كيان */
+  --black:#0D0D09; /* الأسود الملكي المعتمد */
+  --black2:#11110E; /* أسود أعمق للبطاقات */
+  --gold-rich:#A48544; /* الذهبي المعدني الغني */
+  --gold-light:#F1DFA1; /* الذهبي الفاتح للإضاءة */
+  --off-white:#FCF9F2; /* الأبيض الكريمي للنصوص */
+  --white:#FFFFFF;
+  --dim:rgba(252,249,242,0.45);
+  --border:rgba(164,133,68,0.15); /* حدود ذهبية ناعمة */
+  
+  /* خطوط الهوية البصرية */
+  --font-serif:'Cormorant Garamond', serif;
+  --font-sans-ar:'Cairo', sans-serif;
+  --font-sans-en:'Poppins', sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--off-white);font-family:var(--font-sans-ar);overflow-x:hidden;cursor:none}
 
-        html { scroll-behavior: smooth; }
-        body {
-          background: var(--black);
-          color: var(--white);
-          font-family: 'Cairo', sans-serif;
-          overflow-x: hidden;
-          margin: 0;
-          padding: 0;
-        }
+/* إخفاء المؤشر في شاشات اللمس */
+@media (hover: none) and (pointer: coarse) {
+  .cur, .cur-ring { display: none !important; }
+}
 
-        /* Background Grid */
-        body::before {
-          content: '';
-          position: fixed;
-          inset: 0;
-          background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><rect width='80' height='80' fill='%230D0D09'/><path d='M0 0L80 80M80 0L0 80' stroke='%23EEE27D' stroke-opacity='0.03' stroke-width='1'/></svg>");
-          background-size: 80px 80px;
-          pointer-events: none;
-          z-index: -1;
-          animation: backgroundPattern 60s linear infinite;
-        }
+/* CURSOR */
+.cur{width:10px;height:10px;background:var(--gold-rich);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .3s,height .3s}
+.cur-ring{width:36px;height:36px;border:1px solid rgba(164,133,68,0.3);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .12s ease,top .12s ease}
 
-        @keyframes backgroundPattern {
-          0% { background-position: 0% 0%; }
-          100% { background-position: 100% 100%; }
-        }
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:rgba(164,133,68,0.25);border-radius:2px}
 
-        /* Typography Overrides */
-        h1, h2, h3, .footer-logo, .about-quote {
-          font-family: 'Cormorant Garamond', serif;
-        }
-        p, a, span, div {
-          font-family: 'Cairo', sans-serif;
-        }
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(164,133,68,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(164,133,68,.02) 1px,transparent 1px);background-size:80px 80px;pointer-events:none;z-index:0}
 
-        /* Navigation */
-        nav {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: 200;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 20px 60px;
-          background: linear-gradient(to bottom, rgba(13, 13, 9, 0.96), transparent);
-          backdrop-filter: blur(12px);
-        }
-        .nav-logo {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 20px;
-          font-weight: 700;
-          color: var(--gold);
-          letter-spacing: 2px;
-          text-decoration: none;
-        }
-        .nav-links {
-          display: flex;
-          gap: 32px;
-          list-style: none;
-          margin: 0;
-          padding: 0;
-        }
-        .nav-links a {
-          color: rgba(255, 255, 255, 0.5);
-          text-decoration: none;
-          font-size: 14px;
-          font-weight: 600;
-          transition: all 0.3s ease;
-        }
-        .nav-links a:hover {
-          color: var(--gold);
-          text-shadow: 0 0 8px rgba(238,226,125,0.6);
-        }
-        .nav-cta {
-          border: 1px solid var(--gold);
-          color: var(--gold) !important;
-          padding: 8px 20px;
-          border-radius: 40px;
-        }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:15px 60px;background:linear-gradient(to bottom,rgba(13,13,9,.98),transparent);backdrop-filter:blur(15px)}
+.nav-logo{font-family:var(--font-serif);font-size:22px;font-weight:700;color:var(--gold-rich);letter-spacing:2px;text-decoration:none;display:flex;align-items:center;gap:12px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:rgba(252,249,242,.6);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:all .3s; font-family: var(--font-sans-ar);}
+.nav-links a:hover{color:var(--gold-light)}
+.nav-cta{border:1px solid var(--gold-rich) !important;color:var(--gold-rich) !important;padding:8px 24px;border-radius:3px; text-transform:uppercase; font-size: 11px !important;}
+.nav-cta:hover{background: var(--gold-rich); color: var(--black) !important; box-shadow: 0 0 15px rgba(164,133,68,0.3);}
 
-        /* Hero Section */
-        .hero {
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-          overflow: hidden;
-          padding: 120px 60px 100px;
-        }
-        .hero-overlay {
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(ellipse 70% 70% at 65% 50%, rgba(238, 226, 125, .06) 0%, transparent 60%),
-                      linear-gradient(to bottom, rgba(13, 13, 9, .4) 0%, rgba(13, 13, 9, .1) 50%, rgba(13, 13, 9, .7) 100%);
-          animation: heroOverlayPulse 8s ease-in-out infinite alternate;
-          z-index: 1;
-        }
-        @keyframes heroOverlayPulse {
-          0% { opacity: 1; transform: scale(1); }
-          100% { opacity: 0.9; transform: scale(1.02); }
-        }
-        .hero-content {
-          position: relative;
-          z-index: 2;
-          max-width: 720px;
-          text-align: center;
-        }
-        .eyebrow {
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 2px;
-          color: var(--gold);
-          margin-bottom: 24px;
-          display: inline-flex;
-          align-items: center;
-          gap: 14px;
-        }
-        .hero h1 {
-          font-size: clamp(54px, 8vw, 96px);
-          font-weight: 300;
-          line-height: .92;
-          color: var(--white);
-          margin: 0 0 8px 0;
-        }
-        .hero h1 em {
-          font-style: italic;
-          color: var(--gold);
-          display: block;
-        }
-        .hero-ar {
-          font-size: clamp(20px, 3.5vw, 32px);
-          font-weight: 700;
-          color: rgba(255, 255, 255, .8);
-          margin-bottom: 28px;
-        }
-        .hero-desc {
-          font-size: 16px;
-          color: var(--dim);
-          line-height: 2;
-          max-width: 500px;
-          margin: 0 auto 44px;
-        }
-        .hero-btns {
-          display: flex;
-          gap: 14px;
-          justify-content: center;
-        }
-        .btn-gold, .btn-outline {
-          padding: 15px 38px;
-          border-radius: 4px;
-          font-size: 14px;
-          font-weight: 700;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          text-decoration: none;
-          display: inline-block;
-        }
-        .btn-gold {
-          background: var(--gold);
-          color: var(--black);
-          border: none;
-        }
-        .btn-gold:hover {
-          background: var(--gold3);
-          transform: translateY(-3px) scale(1.02);
-          box-shadow: var(--gold-shadow);
-        }
-        .btn-outline {
-          background: transparent;
-          color: var(--white);
-          border: 1px solid rgba(255, 255, 255, .2);
-        }
-        .btn-outline:hover {
-          border-color: var(--gold);
-          color: var(--gold);
-          transform: translateY(-3px) scale(1.02);
-          box-shadow: var(--gold-shadow);
-        }
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 60px 100px}
+#shaderCanvas{position:absolute;inset:0;width:100%;height:100%;opacity:.35;pointer-events:none;z-index:0}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,13,9,.5) 0%,rgba(13,13,9,.2) 50%,rgba(13,13,9,.8) 100%);z-index:1}
+.hero-content{position:relative;z-index:2;max-width:760px;text-align:center}
+.eyebrow{font-size:9px;font-weight:700;letter-spacing:6px;color:var(--gold-rich);text-transform:uppercase;margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s forwards;display:inline-flex;align-items:center;gap:16px}
+.eyebrow::before{content:'';width:40px;height:1px;background:var(--gold-rich);flex-shrink:0}
+.hero h1{font-family:var(--font-serif);font-size:clamp(58px,9vw,100px);font-weight:300;line-height:.9;color:var(--white);margin-bottom:12px;opacity:0;animation:fadeUp .8s .4s forwards}
+.hero h1 em{font-style:italic;color:var(--gold-rich);display:block}
+.hero-ar{font-family:var(--font-sans-ar);font-size:clamp(26px,3.8vw,44px);font-weight:700;color:rgba(252,249,242,.8);margin-bottom:32px;opacity:0;animation:fadeUp .8s .5s forwards}
+.hero-desc{font-size:16px;color:var(--dim);line-height:2.1;max-width:540px;margin:0 auto 48px;opacity:0;animation:fadeUp .8s .7s forwards}
+.hero-btns{display:flex;gap:16px;justify-content:center;opacity:0;animation:fadeUp .8s .9s forwards}
+.btn-gold{background:var(--gold-rich);color:var(--black);border:none;padding:16px 42px;border-radius:2px;font-family:var(--font-sans-ar);font-size:13px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:all .3s;text-decoration:none; display:inline-block; border: 1px solid var(--gold-rich);}
+.btn-gold:hover{background:transparent;color:var(--gold-rich);box-shadow: 0 0 20px rgba(164,133,68,0.2); transform: translateY(-3px);}
+.btn-outline{background:transparent;color:var(--white);border:1px solid rgba(252,249,242,.3);padding:16px 42px;border-radius:2px;font-family:var(--font-sans-ar);font-size:13px;font-weight:600;letter-spacing:1px;cursor:pointer;transition:all .3s;text-decoration:none; display:inline-block;}
+.btn-outline:hover{border-color:var(--gold-rich);color:var(--gold-rich); background: rgba(164,133,68,0.05);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 
-        /* Sections */
-        section { position: relative; z-index: 1; }
-        .container {
-          max-width: 1180px;
-          margin: 0 auto;
-          padding: 0 60px;
-        }
-        #about { padding: 120px 0; }
-        .about-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 90px;
-          align-items: center;
-        }
-        .sec-eyebrow {
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 2px;
-          color: var(--gold);
-          display: flex;
-          align-items: center;
-          gap: 14px;
-          margin-bottom: 14px;
-        }
-        .sec-h2 {
-          font-size: clamp(34px, 5vw, 58px);
-          font-weight: 400;
-          color: var(--white);
-          margin-bottom: 14px;
-        }
-        .sec-h2 em { color: var(--gold); font-style: italic; }
-        .about-quote {
-          font-size: clamp(20px, 2.5vw, 28px);
-          font-style: italic;
-          color: rgba(255, 255, 255, .72);
-          line-height: 1.6;
-          margin-bottom: 30px;
-          padding-right: 22px;
-          border-right: 2px solid var(--gold);
-        }
-        .sec-sub {
-          font-size: 15px;
-          color: var(--dim);
-          line-height: 1.85;
-        }
-        .about-visual {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 16px;
-        }
-        .about-card {
-          background: var(--panel);
-          border: 1px solid var(--border);
-          border-radius: 12px;
-          padding: 28px;
-          text-align: center;
-          transition: all 0.4s ease-out;
-        }
-        .about-card:hover {
-          border-color: var(--gold);
-          transform: translateY(-8px);
-          box-shadow: var(--gold-shadow);
-        }
-        .about-card-title {
-          font-size: 24px;
-          color: var(--white);
-          margin: 0 0 10px 0;
-        }
-        .about-card-ar {
-          font-size: 14px;
-          color: var(--gold);
-          margin: 0;
-        }
+/* SECTIONS */
+section{position:relative;z-index:1}
+.container{max-width:1200px;margin:0 auto;padding:0 60px}
+.sec-eyebrow{font-size:9px;font-weight:700;letter-spacing:5px;color:var(--gold-rich);text-transform:uppercase;display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.sec-eyebrow::before{content:'';width:30px;height:1px;background:var(--gold-rich);flex-shrink:0}
+.sec-h2{font-family:var(--font-serif);font-size:clamp(36px,5.5vw,62px);font-weight:400;line-height:1.05;color:var(--white);margin-bottom:16px}
+.sec-h2 em{font-style:italic;color:var(--gold-rich)}
+.sec-sub{font-size:15px;color:var(--dim);max-width:500px;line-height:2; margin-bottom: 50px;}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s ease,transform 1s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
-        /* Footer */
-        footer {
-          padding: 60px 0;
-          text-align: center;
-          background: var(--black2);
-          border-top: 1px solid var(--border);
-        }
-        .footer-logo {
-          font-size: 24px;
-          font-weight: 700;
-          color: var(--gold);
-          letter-spacing: 2px;
-          margin-bottom: 15px;
-          display: block;
-        }
-        .footer-links {
-          display: flex;
-          justify-content: center;
-          gap: 30px;
-          list-style: none;
-          padding: 0;
-          margin-bottom: 20px;
-        }
-        .footer-links a {
-          color: rgba(255, 255, 255, .5);
-          text-decoration: none;
-          font-size: 14px;
-          transition: all .3s ease;
-        }
-        .footer-links a:hover {
-          color: var(--gold);
-        }
-        .footer-copy {
-          font-size: 13px;
-          color: var(--dim);
-        }
+/* FEATURED WORK (الإصدار الحصري) */
+#featured-work { padding: 130px 0; background: var(--black2); }
+.feat-container { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; background: rgba(255,255,255,0.01); border: 1px solid var(--border); border-radius: 2px; padding: 60px; position: relative; overflow: hidden; transition: all 0.5s;}
+.feat-container:hover { border-color: rgba(164,133,68,0.4); box-shadow: 0 0 50px rgba(0,0,0,0.4); }
+.feat-badge { position: absolute; top: 25px; left: 25px; background: var(--gold-rich); color: var(--black); padding: 7px 18px; font-size: 10px; font-weight: 800; letter-spacing: 2.5px; border-radius: 1px; text-transform: uppercase; z-index: 2;}
+.feat-img-box { position: relative; height: 100%; min-height: 420px; border-radius: 1px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+.feat-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s; }
+.feat-container:hover .feat-img { transform: scale(1.04); }
+.feat-info { display: flex; flex-direction: column; justify-content: center; }
+.feat-title { font-family: var(--font-serif); font-size: 44px; color: var(--white); margin-bottom: 12px; line-height: 1; }
+.feat-ar-title { font-size: 24px; font-weight: 700; color: var(--gold-rich); margin-bottom: 24px; }
+.feat-desc { font-size: 15px; color: var(--dim); line-height: 1.95; margin-bottom: 35px; }
+.sizes-grid { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 40px; }
+.size-tag { border: 1px solid var(--border); padding: 9px 18px; border-radius: 1px; font-size: 13px; color: rgba(252,249,242,0.8); display: flex; flex-direction: column; align-items: center; background: rgba(0,0,0,0.3); font-family: var(--font-sans-en);}
+.size-tag span:first-child { color: var(--gold-rich); font-weight: 700; margin-bottom: 3px; font-family: var(--font-sans-en);}
 
-        /* RTL Adjustments */
-        html[dir="rtl"] .nav-links, html[dir="rtl"] .hero-btns, html[dir="rtl"] .footer-links {
-          flex-direction: row-reverse;
-        }
+/* ABOUT */
+#about{padding:130px 0;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center}
+.about-visual{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.about-card{background: rgba(255,255,255,0.01);border:1px solid var(--border);border-radius:1px;padding:30px;transition:all .3s}
+.about-card:hover{border-color:rgba(164,133,68,0.4); transform:translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.2);}
+.about-card:nth-child(2){margin-top:30px}
+.about-card:nth-child(4){margin-top:30px}
+.about-icon{font-size:30px;margin-bottom:16px;filter:drop-shadow(0 0 10px rgba(164,133,68,0.35))}
+.about-card-title {font-family:var(--font-serif); font-size:18px; font-weight:600; color:var(--white); margin-bottom:4px}
+.about-card-ar{font-size:12px;font-weight:700;color:var(--gold-rich);margin-bottom:10px}
+.about-card-desc{font-size:13px;color:var(--dim);line-height:1.75}
+.about-quote{font-family:var(--font-serif);font-size:clamp(19px,2.7vw,28px);font-style:italic;color:rgba(252,249,242,.7);line-height:1.6;margin-bottom:40px;padding-right:24px;border-right:1px solid var(--gold-rich)}
+.about-list{list-style:none;display:flex;flex-direction:column;gap:16px}
+.about-list li{display:flex;align-items:flex-start;gap:14px;font-size:14px;color:rgba(252,249,242,.6)}
+.about-list li span{color:var(--gold-rich);font-weight:700;font-size:16px;flex-shrink:0;line-height:1;margin-top:3px;}
 
-        /* Animations */
-        .reveal {
-          opacity: 0;
-          transform: translateY(36px);
-          transition: opacity .8s ease, transform .8s ease;
-        }
-        .reveal.visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
+/* SERVICES */
+#services{padding:130px 0; background:var(--black2)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr); gap:16px;}
+.svc{background:rgba(255,255,255,0.01);border:1px solid var(--border);border-radius:1px;overflow:hidden;transition:all 0.5s; position:relative}
+.svc:hover{transform:translateY(-10px);border-color:rgba(164,133,68,0.5); box-shadow: 0 15px 40px rgba(0,0,0,0.3);}
+.svc-vis{height:280px;position:relative;overflow:hidden}
+.svc-img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s}
+.svc:hover .svc-img{transform:scale(1.06)}
+.svc-overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(13,13,9,0.98) 10%, transparent)}
+.svc-badge{position:absolute;top:20px;right:20px;background:rgba(13,13,9,.8);border:1px solid rgba(164,133,68,0.3);color:var(--gold-rich);font-size:11px;font-weight:700;padding:7px 16px;border-radius:1px;letter-spacing:1px;backdrop-filter:blur(8px); z-index:2}
+.svc-body{padding:30px;position:relative;z-index:2;margin-top:-70px}
+.svc-num{font-family:var(--font-serif);font-size:13px;color:rgba(164,133,68,0.6);letter-spacing:3.5px;margin-bottom:8px;display:block}
+.svc-title{font-family:var(--font-serif);font-size:30px;font-weight:600;color:var(--white);margin-bottom:5px}
+.svc-ar{font-size:15px;font-weight:700;color:var(--gold-rich);margin-bottom:15px}
+.svc-desc{font-size:14px;color:var(--dim);line-height:1.9;margin-bottom:24px}
+.svc-tags{display:flex;gap:10px;flex-wrap:wrap}
+.tag{font-size:11px;font-weight:700;letter-spacing:1px;color:rgba(164,133,68,0.7);border:1px solid rgba(164,133,68,0.2);padding:5px 14px;border-radius:1px; font-family: var(--font-sans-ar);}
 
-        /* Responsive */
-        @media (max-width: 992px) {
-          .about-grid { grid-template-columns: 1fr; gap: 50px; }
-          .container { padding: 0 30px; }
-          nav { padding: 15px 30px; }
-          .nav-links { display: none; }
-        }
-    </style>
+/* PACKAGES */
+#packages{padding:130px 0;}
+.pkg-hdr{text-align:center;margin-bottom:70px}
+.pkg-hdr .sec-eyebrow{justify-content:center}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+.pkg{border-radius:1px;overflow:hidden;position:relative;transition:all .5s}
+.pkg:hover{transform:translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.3);}
+.pkg-std{background: rgba(255,255,255,0.01);border:1px solid var(--border)}
+.pkg-feat{background:linear-gradient(160deg,#141408,#1e1c0a 50%,#141408);border:1px solid var(--gold-rich);box-shadow:0 0 55px rgba(164,133,68,0.08)}
+.pkg-feat::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-rich),transparent)}
+.pkg-badge{position:absolute;top:18px;right:18px;background:var(--gold-rich);color:var(--black);font-size:9px;font-weight:900;letter-spacing:2.5px;padding:5px 13px;border-radius:1px}
+.pkg-hd{padding:35px 35px 0}
+.pkg-tier {font-size:10px; font-weight:700; letter-spacing:4.5px; color:var(--gold-rich); text-transform:uppercase; margin-bottom:8px}
+.pkg-name{font-family:var(--font-serif);font-size:34px;font-weight:600;color:var(--white);margin-bottom:4px}
+.pkg-price{padding:24px 35px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:8px}
+.pkg-cur{font-size:17px;color:var(--gold-rich);font-weight:700}
+.pkg-amt{font-family:var(--font-serif);font-size:52px;font-weight:700;color:var(--white);line-height:1}
+.pkg-per{font-size:12px;color:var(--dim)}
+.pkg-feats{padding:28px 35px;list-style:none;display:flex;flex-direction:column;gap:14px}
+.pkg-feats li{font-size:14px;color:rgba(252,249,242,.65);display:flex;align-items:flex-start;gap:12px}
+.pkg-feats li::before{content:'✦';color:var(--gold-rich);font-size:10px;flex-shrink:0;margin-top:4px}
+
+/* MODELS GRID */
+#models{padding:130px 0; background:var(--black2);}
+.models-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.model-card{background: rgba(255,255,255,0.01);border:1px solid var(--border);border-radius:1px;overflow:hidden;transition:all 0.5s;position:relative}
+.model-card:hover{transform:translateY(-10px);border-color:rgba(164,133,68,0.5); box-shadow: 0 15px 40px rgba(0,0,0,0.3);}
+.model-avatar{height:380px;position:relative;background:#0A0A07}
+.model-real-img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s}
+.model-card:hover .model-real-img{transform:scale(1.04)}
+.model-overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(13,13,9,0.99), transparent 50%);z-index:1}
+.model-ig-badge{position:absolute;top:18px;right:18px;background:rgba(13,13,9,.8);border:1px solid rgba(164,133,68,0.3);border-radius:1px;padding:7px 12px;font-size:10px;font-weight:700;color:var(--gold-rich);letter-spacing:1px;z-index:3;backdrop-filter:blur(8px); font-family: var(--font-sans-en);}
+.model-info{padding:30px;position:relative;z-index:2;margin-top:-60px;text-align:center}
+.model-handle{font-size:11px; font-weight:700; letter-spacing:2.5px; color:rgba(164,133,68,0.7); text-transform:uppercase; margin-bottom:6px; font-family: var(--font-sans-en);}
+.model-name{font-family:var(--font-serif);font-size:26px;color:var(--white);margin-bottom:14px;font-weight:600}
+.model-stats{display:flex;justify-content:center;gap:22px;border-top:1px solid rgba(255,255,255,0.04);padding-top:18px}
+.m-stat{text-align:center}
+.m-val{display:block;color:var(--gold-rich);font-weight:700;font-size:17px; font-family: var(--font-sans-en);}
+.m-lbl{display:block;color:var(--dim);font-size:9px;text-transform:uppercase;letter-spacing:2px;margin-top:3px; font-family: var(--font-sans-en);}
+
+/* BOOKING & CONTACT */
+#booking{padding:130px 0;}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:74px;align-items:start}
+.channels{display:flex;flex-direction:column;gap:18px;margin-top:40px}
+.channel{display:flex;align-items:center;gap:18px;background: rgba(255,255,255,0.01);border:1px solid var(--border);border-radius:1px;padding:22px 26px;text-decoration:none;color:var(--white);transition:all .3s}
+.channel:hover{border-color:rgba(164,133,68,0.5);transform:translateX(-7px); box-shadow: 0 10px 30px rgba(0,0,0,0.15);}
+.ch-icon{font-size:26px;flex-shrink:0;filter:drop-shadow(0 0 10px rgba(164,133,68,0.3))}
+.ch-label{font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--gold-rich);text-transform:uppercase;display:block;margin-bottom:5px; font-family: var(--font-sans-en);}
+.ch-val{font-size:15px;font-weight:600;color:var(--off-white)}
+
+/* Booking Form Elements */
+.cform{background: rgba(255,255,255,0.01);border:1px solid var(--gold-rich); border-radius:2px;padding:45px; box-shadow: 0 15px 50px rgba(0,0,0,0.4);}
+.cform-title{font-family:var(--font-serif);font-size:28px;font-weight:600;color:var(--white);margin-bottom:6px}
+.cform-sub{font-size:13px;color:var(--dim);margin-bottom:30px}
+.fgrp{margin-bottom:20px}
+.flabel{font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--gold-rich);text-transform:uppercase;display:block;margin-bottom:8px}
+.finput, .fselect{width:100%;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:1px;padding:16px 18px;color:var(--white);font-family:var(--font-sans-ar);font-size:14px;transition:border-color .3s;outline:none}
+.finput:focus, .fselect:focus{border-color:rgba(164,133,68,0.5)}
+.fselect { appearance: none; cursor: pointer; }
+.fselect option { background: #11110E; color: var(--off-white); }
+
+/* File Upload Styling */
+.file-upload-wrapper { position: relative; width: 100%; background: rgba(255,255,255,.01); border: 1px dashed rgba(164,133,68,0.3); border-radius: 1px; padding: 28px 18px; text-align: center; transition: all .3s; cursor: pointer; }
+.file-upload-wrapper:hover { border-color: var(--gold-rich); background: rgba(164,133,68,0.03); }
+.file-upload-input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+.file-upload-icon { font-size: 26px; color: var(--gold-rich); margin-bottom: 10px; }
+.file-upload-text { color: var(--white); font-size: 14px; font-weight: 600; }
+.file-upload-sub { color: var(--dim); font-size: 11px; margin-top: 6px; display: block; }
+
+.fsubmit{width:100%;background:var(--gold-rich);color:var(--black);border:none;padding:18px;border-radius:1px;font-family:var(--font-sans-ar);font-size:15px;font-weight:900;letter-spacing:1px;cursor:pointer;transition:all .3s;margin-top:12px; border: 1px solid var(--gold-rich);}
+.fsubmit:hover{background:transparent; color: var(--gold-rich); box-shadow: 0 0 25px rgba(164,133,68,0.2); transform: translateY(-3px);}
+
+/* FOOTER */
+footer{padding:60px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;background:var(--black)}
+footer::before{content:'KAYAN';position:absolute;font-family:var(--font-serif);font-size:160px;font-weight:900;color:rgba(164,133,68,0.015);bottom:-25px;right:-10px;pointer-events:none;letter-spacing:10px}
+.foot-brand{font-family:var(--font-serif);font-size:24px;font-weight:700;color:var(--gold-rich);display:block;margin-bottom:4px}
+.foot-tag{font-size:11px;color:var(--dim);letter-spacing:2.5px}
+.foot-mid{text-align:center;font-size:12px;color:rgba(252,249,242,.15);letter-spacing:1.5px}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .svc-grid{grid-template-columns: repeat(2,1fr);}
+}
+@media(max-width:900px){
+  nav{padding:16px 25px}
+  .nav-links{display:none}
+  .hero,.container{padding-left:25px;padding-right:25px}
+  .hero{padding-top:110px;padding-bottom:80px}
+  .feat-container { grid-template-columns: 1fr; padding: 40px; }
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .svc-grid{display:flex;flex-direction:column}
+  .pkg-grid,.models-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:25px;text-align:center;padding:40px 25px}
+}
+</style>
 </head>
 <body>
 
-    <nav>
-        <a href="#" class="nav-logo">KAYAN MASTERPIECE</a>
-        <ul class="nav-links">
-            <li><a href="#about">عن كيان</a></li>
-            <li><a href="#featured-work">الإصدارات الفنية</a></li>
-            <li><a href="#contact" class="nav-cta">تواصل معنا</a></li>
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="ring"></div>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="logo.png" alt="Kayan Masterpiece Logo" style="height: 55px;">
+    <span>Kayan Masterpiece</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">من نحن</a></li>
+    <li><a href="#featured-work">الإصدار الحصري</a></li>
+    <li><a href="#services">الخدمات</a></li>
+    <li><a href="#packages">الباقات</a></li>
+    <li><a href="#booking" class="nav-cta">تأكيد الحجز</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <canvas id="shaderCanvas"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="eyebrow">وكالة إبداعية فاخرة · مسقط، عُمان</div>
+    <h1>Creation<br><em>Made to Last</em></h1>
+    <div class="hero-ar">تحفة كيان — إبداع صنع ليدوم</div>
+    <p class="hero-desc">وكالة إبداعية متخصصة في التغليف الفاخر، إدارة الإعلام، والتصوير الاحترافي — حيث تلتقي الأناقة بالإتقان في كل تفصيلة صغيرة</p>
+    <div class="hero-btns">
+      <a href="#featured-work" class="btn-gold">الإصدارات الحديثة</a>
+      <a href="#booking" class="btn-outline">احجز مشروعك</a>
+    </div>
+  </div>
+</div>
+
+<section id="featured-work">
+  <div class="container reveal">
+    <div class="sec-eyebrow"><span>أحدث إبداعاتنا</span></div>
+    <h2 class="sec-h2">الإصدار <em>الحصري</em></h2>
+    
+    <div class="feat-container">
+      <div class="feat-badge">لفترة محدودة</div>
+      <div class="feat-img-box">
+        <img src="new_box_image.jpg" class="feat-img" alt="أحدث ألبومات تحفة كيان">
+      </div>
+      <div class="feat-info">
+        <div class="feat-title">The Royal Album</div>
+        <div class="feat-ar-title">ألبوم "لؤلؤة كيان" الفاخر</div>
+        <p class="feat-desc">صُنع هذا الألبوم الاستثنائي بعناية فائقة لتوثيق أرقى اللحظات. يتميز بغلاف جلدي فاخر مع طباعة بارزة (UV) وإطار فويل ذهبي عيار 24. متوفر بمقاسات متعددة تناسب احتياجك لتخليد يومك المميز.</p>
+        
+        <div style="font-size: 11px; color: var(--gold-rich); margin-bottom: 12px; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase;">المقاسات المتوفرة:</div>
+        <div class="sizes-grid">
+          <div class="size-tag"><span>17.5 × 12.5</span>سم</div>
+          <div class="size-tag"><span>20.0 × 20.0</span>سم</div>
+          <div class="size-tag"><span>30.0 × 30.0</span>سم</div>
+          <div class="size-tag"><span>مقاس مخصص</span>عند الطلب</div>
+        </div>
+        <a href="#booking" class="btn-gold" style="width: fit-content;">احجز هذا الإصدار ✦</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-card"><div class="about-icon">💡</div><div class="about-card-title">Innovation</div><div class="about-card-ar">الابتكار</div><p class="about-card-desc">نوظف أحدث التقنيات لتقديم تجارب بصرية متطورة.</p></div>
+        <div class="about-card"><div class="about-icon">🤝</div><div class="about-card-title">Professionalism</div><div class="about-card-ar">الاحترافية</div><p class="about-card-desc">نلتزم بأعلى معايير العمل لضمان تجربة سلسة.</p></div>
+        <div class="about-card"><div class="about-icon">🔍</div><div class="about-card-title">Detail</div><div class="about-card-ar">دقة التفاصيل</div><p class="about-card-desc">التفاصيل الصغيرة في Kayan هي ما يصنع الفارق.</p></div>
+        <div class="about-card"><div class="about-icon">🏆</div><div class="about-card-title">Quality</div><div class="about-card-ar">الجودة الفاخرة</div><p class="about-card-desc">كل مخرج يُنفَّذ بأعلى معايير الإتقان والفخامة.</p></div>
+      </div>
+      <div class="reveal">
+        <div class="sec-eyebrow"><span>من نحن</span></div>
+        <h2 class="sec-h2">حيث تلتقي الأناقة<br><em>بالإتقان</em></h2>
+        <br>
+        <blockquote class="about-quote">نحن وكالة إبداعية متميزة مصممة خصيصاً للعلامات التجارية التي تأبى أن تكون عادية وتطمح للتميز المطلق.</blockquote>
+        <ul class="about-list">
+          <li><span>✦</span> ولدت "تحفة كيان" من شغف لا يتوقف نحو التميز.</li>
+          <li><span>✦</span> نهدف لأن نكون المرجع الأول في البراندنج الفاخر.</li>
+          <li><span>✦</span> التفاصيل ليست مجرد إضافات، بل هي قلب العمل.</li>
+          <li><span>✦</span> نبتكر حلولاً بصرية تتجاوز المألوف لتخليد علامتك.</li>
         </ul>
-    </nav>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section class="hero">
-        <canvas id="shaderCanvas"></canvas>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <span class="eyebrow reveal visible">مساحة للفن والمشاعر</span>
-            <h1 class="reveal visible">Kayan <em>Masterpiece</em></h1>
-            <p class="hero-ar reveal visible">حيث تلتقي الموسيقى الهادئة بالفن العميق</p>
-            <p class="hero-desc reveal visible">منصة فنية متخصصة في تجسيد المشاعر من خلال الكلمات، الألحان، والإنتاج البصري الفاخر. نصنع الفن الذي يلامس الروح.</p>
-            <div class="hero-btns reveal visible">
-                <a href="#featured-work" class="btn-gold">استكشف أعمالنا</a>
-                <a href="#contact" class="btn-outline">تواصل معنا</a>
-            </div>
+<section id="services">
+  <div class="container">
+    <div class="svc-intro reveal">
+      <div>
+        <div class="sec-eyebrow"><span>خدماتنا</span></div>
+        <h2 class="sec-h2">ما نصنعه<br><em>لعلامتك</em></h2>
+        <p class="sec-sub">كل خدمة مصممة لترفع هوية علامتك التجارية من مجرد اسم إلى تجربة بصرية لا تُنسى.</p>
+      </div>
+    </div>
+    
+    <div class="svc-grid reveal">
+      <div class="svc">
+        <div class="svc-vis"><img src="service1.jpg" class="svc-img" alt="Luxury Packaging"><div class="svc-overlay"></div><div class="svc-badge">فاخر</div></div>
+        <div class="svc-body">
+          <span class="svc-num">01</span>
+          <div class="svc-title">Packaging</div>
+          <div class="svc-ar">التغليف الفاخر</div>
+          <p class="svc-desc">نصمم صناديق وعبوات تحكي قصة علامتك — بلمسات ليزر دقيقة وخامات ترقى لأعلى المعايير.</p>
+          <div class="svc-tags"><span class="tag">صناديق</span><span class="tag">ليزر</span><span class="tag">فخامة</span></div>
         </div>
-    </section>
-
-    <section id="about" class="container">
-        <div class="about-grid">
-            <div class="about-text reveal">
-                <span class="sec-eyebrow">رؤيتنا الفنية</span>
-                <h2 class="sec-h2"><span>نبذة عن <em>كيان</em></span></h2>
-                <p class="about-quote">"الفن ليس مجرد صورة أو صوت، بل هو شعور يترجم ما تعجز الكلمات عن وصفه."</p>
-                <p class="sec-sub">نحن نؤمن بقوة المشاعر والموسيقى. ندمج بين الكتابة الإبداعية والألحان الهادئة لنخلق أعمالاً فنية تبقى في الذاكرة وتخاطب الوجدان.</p>
-            </div>
-            <div class="about-visual reveal">
-                <div class="about-card">
-                    <h3 class="about-card-title">Music</h3>
-                    <p class="about-card-ar">موسيقى هادئة</p>
-                </div>
-                <div class="about-card">
-                    <h3 class="about-card-title">Lyrics</h3>
-                    <p class="about-card-ar">كلمات ومشاعر</p>
-                </div>
-            </div>
+      </div>
+      <div class="svc">
+        <div class="svc-vis"><img src="service2.jpg" class="svc-img" alt="Visual Identity"><div class="svc-overlay"></div><div class="svc-badge">متكامل</div></div>
+        <div class="svc-body">
+          <span class="svc-num">02</span>
+          <div class="svc-title">Identity</div>
+          <div class="svc-ar">الهوية البصرية الكاملة</div>
+          <p class="svc-desc">شعار، ألوان، خطوط، وتطبيقات — هوية متكاملة تعكس شخصية علامتك على كل سطح وشاشة.</p>
+          <div class="svc-tags"><span class="tag">شعار</span><span class="tag">براندنج</span><span class="tag">دليل هوية</span></div>
         </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <span class="footer-logo">KAYAN MASTERPIECE</span>
-            <ul class="footer-links">
-                <li><a href="#">الرئيسية</a></li>
-                <li><a href="#about">عن المنصة</a></li>
-                <li><a href="#contact">تواصل معنا</a></li>
-            </ul>
-            <p class="footer-copy">© 2026 Kayan Masterpiece. جميع الحقوق محفوظة.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-vis"><img src="service3.jpg" class="svc-img" alt="Photography"><div class="svc-overlay"></div></div>
+        <div class="svc-body">
+          <span class="svc-num">03</span>
+          <div class="svc-title">Photography</div>
+          <div class="svc-ar">التصوير الاحترافي</div>
+          <p class="svc-desc">تصوير منتجات وهوية بإضاءة درامية تُبرز فخامة كل تفصيلة بأسلوب المجلات العالمية.</p>
+          <div class="svc-tags"><span class="tag">منتجات</span><span class="tag">استوديو</span></div>
         </div>
-    </footer>
+      </div>
+      <div class="svc">
+        <div class="svc-vis"><img src="service4.jpg" class="svc-img" alt="Social Media"><div class="svc-overlay"></div></div>
+        <div class="svc-body">
+          <span class="svc-num">04</span>
+          <div class="svc-title">Social Media</div>
+          <div class="svc-ar">إدارة السوشيال ميديا</div>
+          <p class="svc-desc">محتوى بصري قوي وريلز احترافية لـ Instagram وTikTok — كل منشور هو قطعة فنية.</p>
+          <div class="svc-tags"><span class="tag">Instagram</span><span class="tag">Reels</span></div>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="svc-vis"><img src="service5.jpg" class="svc-img" alt="Silkscreen Printing"><div class="svc-overlay"></div><div class="svc-badge">دقة عالية</div></div>
+        <div class="svc-body">
+          <span class="svc-num">05</span>
+          <div class="svc-title">Silkscreen</div>
+          <div class="svc-ar">الطباعة السلك سكرين</div>
+          <p class="svc-desc">طباعة حريرية دقيقة وعالية الجودة على مختلف الخامات، تضمن ثبات الألوان ولمسة نهائية احترافية تعكس فخامة علامتك.</p>
+          <div class="svc-tags"><span class="tag">شاشة حريرية</span><span class="tag">ثبات عالي</span></div>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="svc-vis"><img src="service6.jpg" class="svc-img" alt="Embroidery"><div class="svc-overlay"></div><div class="svc-badge">كلاسيكي فاخر</div></div>
+        <div class="svc-body">
+          <span class="svc-num">06</span>
+          <div class="svc-title">Embroidery</div>
+          <div class="svc-ar">الطباعة بالتطريز</div>
+          <p class="svc-desc">تطريز فاخر وبارز بالخيوط الفاخرة على الأقمشة والزي الموحد، لإبراز شعار علامتك التجارية بأسلوب كلاسيكي أنيق يدوم طويلاً.</p>
+          <div class="svc-tags"><span class="tag">تطريز بارز</span><span class="tag">خيوط فاخرة</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            });
-            reveals.forEach(reveal => observer.observe(reveal));
-        });
-    </script>
+<section id="packages">
+  <div class="container">
+    <div class="pkg-hdr reveal">
+      <div class="sec-eyebrow"><span>أسعارنا</span></div>
+      <h2 class="sec-h2">باقات <em>تحفة كيان</em></h2>
+    </div>
+
+    <h3 style="text-align: center; color: var(--gold-rich); margin-bottom: 35px; font-family: var(--font-serif); font-size: 24px; letter-spacing: 1px;">Social Media Management</h3>
+    <div class="pkg-grid reveal" style="margin-bottom: 90px;">
+      <div class="pkg pkg-std">
+        <div class="pkg-hd"><div class="pkg-tier">Silver</div><div class="pkg-name">الباقة الفضية</div></div>
+        <div class="pkg-price"><span class="pkg-amt">250</span><span class="pkg-per">ر.ع / شهرياً</span></div>
+        <ul class="pkg-feats"><li>إدارة إنستغرام</li><li>12 منشوراً شهرياً</li><li>10 قصص (Stories)</li><li>جلسة تصوير واحدة</li></ul>
+      </div>
+      <div class="pkg pkg-feat">
+        <div class="pkg-badge">الأكثر طلباً</div>
+        <div class="pkg-hd"><div class="pkg-tier">Gold</div><div class="pkg-name">الباقة الذهبية</div></div>
+        <div class="pkg-price"><span class="pkg-amt">500</span><span class="pkg-per">ر.ع / شهرياً</span></div>
+        <ul class="pkg-feats"><li>إنستغرام + سناب شات</li><li>20 منشوراً + 20 قصة</li><li>4 ريلز احترافية</li><li>جلستي تصوير احترافي</li></ul>
+      </div>
+      <div class="pkg pkg-std">
+        <div class="pkg-hd"><div class="pkg-tier">Diamond</div><div class="pkg-name">الباقة الماسية</div></div>
+        <div class="pkg-price"><span class="pkg-amt">1000</span><span class="pkg-per">ر.ع / شهرياً</span></div>
+        <ul class="pkg-feats"><li>إدارة جميع المنصات</li><li>30 منشوراً + قصص يومية</li><li>8 ريلز + 4 فيديوهات</li><li>جلسات تصوير أسبوعية</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="models">
+  <div class="container">
+    <div class="models-hdr reveal">
+      <div class="sec-eyebrow"><span>المودلز المتعاقدون</span></div>
+      <h2 class="sec-h2">شبكة <em>المواهب</em> المحترفة</h2>
+      <p class="sec-sub" style="margin:0 auto 60px;">نعمل مع نخبة من مواهبنا المحترفة المتاحون لرفع قيمة حملاتك التسويقية</p>
+    </div>
+    
+    <div class="models-grid reveal">
+      <div class="model-card"><div class="model-avatar"><img src="model1.jpg" alt="Soren" class="model-real-img"><div class="model-overlay"></div><div class="model-ig-badge">📸 Fashion</div></div><div class="model-info"><div class="model-handle">@soren_model</div><div class="model-name">Soren</div><div class="model-stats"><div class="m-stat"><span class="m-val">95%</span><span class="m-lbl">Engagement</span></div><div class="m-stat"><span class="m-val">500K+</span><span class="m-lbl">Reach</span></div></div></div></div>
+      <div class="model-card"><div class="model-avatar"><img src="model2.jpg" alt="Atiyeh" class="model-real-img"><div class="model-overlay"></div><div class="model-ig-badge">📸 Art & Style</div></div><div class="model-info"><div class="model-handle">@atiyehkourehpaz</div><div class="model-name">Atiyeh Kourehpaz</div><div class="model-stats"><div class="m-stat"><span class="m-val">92%</span><span class="m-lbl">Engagement</span></div><div class="m-stat"><span class="m-val">320K+</span><span class="m-lbl">Reach</span></div></div></div></div>
+      <div class="model-card"><div class="model-avatar"><img src="model3.jpg" alt="Dib Beauty" class="model-real-img"><div class="model-overlay"></div><div class="model-ig-badge">📸 Beauty</div></div><div class="model-info"><div class="model-handle">@dibbeautyy</div><div class="model-name">Dib Beauty</div><div class="model-stats"><div class="m-stat"><span class="m-val">98%</span><span class="m-lbl">Engagement</span></div><div class="m-stat"><span class="m-val">1M+</span><span class="m-lbl">Reach</span></div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="booking">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="sec-eyebrow"><span>تأكيد الحجز</span></div>
+        <h2 class="sec-h2">ابدأ <em>مشروعك</em> الفني</h2>
+        <p class="sec-sub">اختر الباقة أو المنتج المناسب، وقم بإرفاق إيصال الدفع لتأكيد حجزك فوراً مع فريق Kayan Masterpiece.</p>
+        
+        <div class="channels">
+          <a href="https://wa.me/96800000000" class="channel">
+            <span class="ch-icon">💬</span>
+            <div><span class="ch-label">WhatsApp Business</span><span class="ch-val">للاستفسارات السريعة</span></div>
+          </a>
+          <a href="https://instagram.com/Kayan_Masterpiece" target="_blank" class="channel">
+            <span class="ch-icon">📸</span>
+            <div><span class="ch-label">Instagram</span><span class="ch-val">@Kayan_Masterpiece</span></div>
+          </a>
+        </div>
+      </div>
+
+      <div class="cform reveal">
+        <div class="cform-title">نموذج الحجز المباشر</div>
+        <p class="cform-sub">يرجى تعبئة البيانات وإرفاق إيصال التحويل البنكي</p>
+        
+        <div class="fgrp">
+          <label class="flabel">الاسم الكامل</label>
+          <input type="text" class="finput" placeholder="الاسم الكريم">
+        </div>
+        
+        <div class="fgrp">
+          <label class="flabel">رقم الواتساب</label>
+          <input type="text" class="finput" placeholder="+968 XXXX XXXX">
+        </div>
+        
+        <div class="fgrp">
+          <label class="flabel">الخدمة المطلوبة</label>
+          <select class="fselect">
+            <option disabled selected>اختر الباقة أو المنتج...</option>
+            <option>ألبوم "لؤلؤة كيان" (الإصدار الحصري)</option>
+            <option>باقة السوشيال ميديا - الفضية</option>
+            <option>باقة السوشيال ميديا - الذهبية</option>
+            <option>باقة السوشيال ميديا - الماسية</option>
+            <option>خدمات الطباعة السلك سكرين</option>
+            <option>خدمات الطباعة بالتطريز</option>
+            <option>تصميم وتغليف بوكسات (طلب خاص)</option>
+          </select>
+        </div>
+        
+        <div class="fgrp">
+          <label class="flabel">ملاحظات إضافية (اختياري)</label>
+          <textarea class="finput" placeholder="أضف أي تفاصيل أو مقاسات خاصة..." style="height: 90px;"></textarea>
+        </div>
+
+        <div class="fgrp">
+          <label class="flabel">إرفاق إيصال الدفع / الفاتورة</label>
+          <div class="file-upload-wrapper">
+            <input type="file" class="file-upload-input" accept="image/*,.pdf">
+            <div class="file-upload-icon">📎</div>
+            <div class="file-upload-text">اضغط هنا لاختيار الإيصال أو اسحب الملف</div>
+            <span class="file-upload-sub">صيغ مدعومة: JPG, PNG, PDF</span>
+          </div>
+        </div>
+
+        <button class="fsubmit">تأكيد الحجز وإرسال الطلب ✦</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <span class="foot-brand">Kayan Masterpiece</span>
+    <span class="foot-tag">إبداع صنع ليدوم · Creation Made to Last</span>
+  </div>
+  <div class="foot-mid">© 2026 Kayan Masterpiece · مسقط، عُمان<br>جميع الحقوق محفوظة</div>
+</footer>
+
+<script>
+// Cursor logic
+const cur=document.getElementById('cur'), ring=document.getElementById('ring');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+function animRing(){ rx+=(mx-rx)*0.15; ry+=(my-ry)*0.15; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); }
+animRing();
+
+// Reveal animation
+const obs=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }); }, {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Smooth Scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})});
+});
+
+// File Upload interaction (to show selected file name)
+const fileInput = document.querySelector('.file-upload-input');
+const fileText = document.querySelector('.file-upload-text');
+fileInput.addEventListener('change', function(e) {
+  if (e.target.files.length > 0) {
+    fileText.textContent = "تم اختيار: " + e.target.files[0].name;
+    fileText.style.color = "#F1DFA1";
+  } else {
+    fileText.textContent = "اضغط هنا لاختيار الإيصال أو اسحب الملف";
+    fileText.style.color = "#FFFFFF";
+  }
+});
+
+// Interactive Voronoi Shader (Updated for new Luxury Palette)
+(function(){
+  const canvas = document.getElementById('shaderCanvas');
+  const gl = canvas.getContext('webgl');
+  if(!gl) return;
+  let mouseX = 0.5, mouseY = 0.5;
+  document.addEventListener('mousemove', e => { mouseX = e.clientX / window.innerWidth; mouseY = 1.0 - (e.clientY / window.innerHeight); });
+  const vs = `attribute vec2 aPosition; void main() { gl_Position = vec4(aPosition, 0.0, 1.0); }`;
+  const fs = `
+    precision highp float; uniform vec2 iResolution; uniform float iTime; uniform vec2 iMouse;
+    uniform float uCellDensity; uniform float uAnimationSpeed; uniform float uWarpFactor; uniform float uMouseInfluence;
+    #define PI 3.14159265359
+    vec2 random2(vec2 p) { return fract(sin(vec2(dot(p, vec2(127.1,311.7)), dot(p, vec2(269.5,183.3)))) * 43758.5453); }
+    vec2 voronoi(vec2 x, float time) {
+      vec2 n = floor(x); vec2 f = fract(x); float m = 10.0; float m2 = 10.0;
+      for(int j = -1; j <= 1; j++){ for(int i = -1; i <= 1; i++){ vec2 g = vec2(float(i), float(j)); vec2 o = random2(n + g); o = 0.5 + 0.5 * sin(time + o * PI * 2.0); float d = length(g - f + o); if (d < m) { m2 = m; m = d; } else if (d < m2) { m2 = d; } } }
+      return vec2(m, m2);
+    }
+    void main() {
+      vec2 uv = (gl_FragCoord.xy * 2.0 - iResolution.xy) / min(iResolution.x, iResolution.y);
+      vec2 m = (iMouse * 2.0 - 1.0) * (iResolution.xy / min(iResolution.x, iResolution.y));
+      float md = length(uv - m); vec2 disp = normalize(uv - m) * (1.0 - smoothstep(0.0, 0.5, md)) * uMouseInfluence; uv -= disp;
+      float t = iTime * uAnimationSpeed; vec2 b = voronoi(uv * uCellDensity, t); vec2 w = voronoi(uv * uCellDensity + b.yy * uWarpFactor, t);
+      float pattern = w.y - w.x;
+      
+      // Kayan Masterpiece Official Luxury Palette (#0D0D09 Base, #A48544 Gold)
+      vec3 bg = vec3(0.051, 0.051, 0.035); // Very dark rich black
+      vec3 gold = vec3(0.643, 0.522, 0.267); // Deeper, metallic rich gold
+      
+      float lines = 1.0 - smoothstep(0.01, 0.03, pattern); // Thinner, subtle lines
+      vec3 color = mix(bg, gold, lines * 0.12); // Reduced intensity for subtlety
+      color += gold * pow(1.0 - b.x, 12.0) * 0.06; // Softer golden glow
+      
+      gl_FragColor = vec4(color, 1.0);
+    }
+  `;
+  function compile(type, src) { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+  const p = gl.createProgram(); gl.attachShader(p, compile(gl.VERTEX_SHADER, vs)); gl.attachShader(p, compile(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(p); gl.useProgram(p);
+  const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+  const aPos = gl.getAttribLocation(p, 'aPosition'); gl.enableVertexAttribArray(aPos); gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+  const uRes = gl.getUniformLocation(p, 'iResolution'), uTime = gl.getUniformLocation(p, 'iTime'), uMouse = gl.getUniformLocation(p, 'iMouse');
+  gl.uniform1f(gl.getUniformLocation(p, 'uCellDensity'), 6.5); gl.uniform1f(gl.getUniformLocation(p, 'uAnimationSpeed'), 0.12); gl.uniform1f(gl.getUniformLocation(p, 'uWarpFactor'), 0.7); gl.uniform1f(gl.getUniformLocation(p, 'uMouseInfluence'), 0.18);
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; gl.viewport(0, 0, canvas.width, canvas.height); }
+  window.addEventListener('resize', resize); resize();
+  const start = performance.now();
+  function render() { gl.uniform2f(uRes, canvas.width, canvas.height); gl.uniform1f(uTime, (performance.now() - start) / 1000.0); gl.uniform2f(uMouse, mouseX, mouseY); gl.drawArrays(gl.TRIANGLES, 0, 6); requestAnimationFrame(render); }
+  render();
+})();
+</script>
 </body>
 </html>
